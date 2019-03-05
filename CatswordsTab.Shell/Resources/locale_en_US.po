@@ -7,7 +7,7 @@ msgid "PAGE_TITLE"
 msgstr "Community"
 
 msgid "PAGE_BUTTON_ADD"
-msgstr "Write"
+msgstr "Comment"
 
 msgid "PAGE_LABEL_TITLE"
 msgstr "Community"
@@ -20,6 +20,12 @@ msgstr "Message"
 
 msgid "WRITER_CHECKBOX_AGREEMENT"
 msgstr "I agree to 'Terms of Use' and 'Privacy Policy'"
+
+msgid "WRITER_MESSAGE_AGREEMENT"
+msgstr "You must agree to 'Terms of Use' and 'Privacy Policy'"
+
+msgid "WRITER_MESSAGE_SENT"
+msgstr "Succeed"
 
 msgid "WRITER_LABEL_TITLE"
 msgstr "Write a comment"
@@ -49,7 +55,7 @@ msgid "AUTH_TITLE"
 msgstr "Authorization"
 
 msgid "AUTH_MESSAGE_LOGIN_SUCCESS"
-msgstr "Success"
+msgstr "Succeed"
 
 msgid "AUTH_MESSAGE_LOGIN_FAILED"
 msgstr "Failed"
