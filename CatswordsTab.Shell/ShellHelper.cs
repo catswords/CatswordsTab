@@ -16,26 +16,23 @@ using CatswordsTab.Shell.Model;
 using Newtonsoft.Json;
 using Force.Crc32;
 using System.Globalization;
-using PeNet;
-using ELFSharp.ELF;
-using ELFSharp.ELF.Sections;
 
 namespace CatswordsTab.Shell
 {
-    public static class CatswordsTabHelper
+    public static class ShellHelper
     {
         private static string AuthType = "bearer";
         private static string AuthToken = string.Empty;
         private static string BaseUri = "https://2s.re.kr";
         private static PrivateFontCollection pfc = null;
-        public static CatswordsTabPage TabPage = null;
-        public static CatswordsTabAuth TabAuth = null;
-        public static CatswordsTabWriter TabWriter = null;
-        public static CatswordsTabExpert TabExpert = null;
-        public static string ReportData = "";
+        public static ShellPage TabPage = null;
+        public static ShellAuth TabAuth = null;
+        public static ShellWriter TabWriter = null;
+        public static ShellExpert TabExpert = null;
+        public static string ReportData = "please visit us. https://catswords.com";
         public static string EOL = "\r\n";
 
-        static CatswordsTabHelper()
+        static ShellHelper()
         {
             // set font collection
             pfc = new PrivateFontCollection();
@@ -132,7 +129,6 @@ namespace CatswordsTab.Shell
             return Path.GetExtension(filename).Substring(1).ToUpper();
         }
 
-        // alternative to RestSharp
         // http://www.csharpstudy.com/web/article/16-HttpWebRequest-%ED%99%9C%EC%9A%A9
         public static string RequestGet(string uri)
         {
@@ -141,7 +137,7 @@ namespace CatswordsTab.Shell
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(BaseUri + uri);
             request.Method = "GET";
             request.Timeout = 30 * 1000;
-            request.UserAgent = "CatswordsTab/1.0 (https://catswords.com)";
+            request.UserAgent = "CatswordsTab.Shell/1.1 (https://catswords.com)";
             if(!GetAuthToken().Equals(string.Empty))
             {
                 request.Headers.Add("Authorization", GetAuthorization());
@@ -168,7 +164,7 @@ namespace CatswordsTab.Shell
             request.Method = "POST";
             request.ContentType = "application/json";
             request.Timeout = 30 * 1000;
-            request.UserAgent = "CatswordsTab/1.0 (https://catswords.com)";
+            request.UserAgent = "CatswordsTab.Shell/1.1 (https://catswords.com)";
             if(!GetAuthToken().Equals(string.Empty))
             {
                 request.Headers.Add("Authorization", GetAuthorization());
@@ -224,52 +220,14 @@ namespace CatswordsTab.Shell
                 { "email", username },
                 { "password", password }
             };
-            string response = CatswordsTabHelper.RequestPost("/_/auth/authenticate", JsonData.ToString());
-            CatswordsTabHelper.SetAuthToken(response);
+            string response = ShellHelper.RequestPost("/_/auth/authenticate", JsonData.ToString());
+            ShellHelper.SetAuthToken(response);
         }
         
         public static string GetCurrentLanaguage()
         {
             CultureInfo ci = CultureInfo.CurrentUICulture;
             return ci.Name;
-        }
-
-        public static void DoAnalyze()
-        {
-            // PE Header
-            ReportData += "## PE Header" + EOL;
-            try
-            {
-                PeFile pe = new PeNet.PeFile(CatswordsTabHelper.TabPage.FilePath);
-                ReportData += pe.ToString() + EOL;
-            } catch
-            {
-                ReportData += "Some occured errors." + EOL;
-            }
-
-            // ELF
-            try
-            {
-                IELF elf = ELFReader.Load(CatswordsTabHelper.TabPage.FilePath);
-
-                // ELF Section Header
-                ReportData += "## ELF Section Header" + EOL;
-                foreach (ISection header in elf.Sections)
-                {
-                    ReportData += header.ToString() + EOL;
-                }
-
-                // ELF Functions
-                ReportData += "## ELF Function" + EOL;
-                var functions = ((ISymbolTable)elf.GetSection(".symtab")).Entries.Where(x => x.Type == SymbolType.Function);
-                foreach (ISymbolEntry f in functions)
-                {
-                    ReportData += f.Name + EOL;
-                }
-            } catch
-            {
-                ReportData += "Some occured errors." + EOL;
-            }
         }
     }
 }

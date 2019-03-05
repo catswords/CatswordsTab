@@ -1,6 +1,6 @@
 ﻿namespace CatswordsTab.Shell
 {
-    partial class CatswordsTabExpert
+    partial class ShellExpert
     {
         /// <summary>
         /// Required designer variable.

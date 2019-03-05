@@ -1,8 +1,5 @@
 ﻿using CatswordsTab.Shell.Model;
-using ELFSharp.ELF;
-using ELFSharp.ELF.Sections;
 using Newtonsoft.Json;
-using PeNet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CatswordsTab.Shell
 {
-    public partial class CatswordsTabWriter : Form
+    public partial class ShellWriter : Form
     {
         private string dataReport = "";
    
@@ -25,7 +22,7 @@ namespace CatswordsTab.Shell
             InitializeFont();
         }
 
-        public CatswordsTabWriter()
+        public ShellWriter()
         {
             Initialize();
         }
@@ -47,36 +44,36 @@ namespace CatswordsTab.Shell
 
         private void InitializeFont()
         {
-            this.Font = CatswordsTabHelper.GetFont();
-            btnSend.Font = CatswordsTabHelper.GetFont(12F);
-            labelMessage.Font = CatswordsTabHelper.GetFont();
-            cbAgreement.Font = CatswordsTabHelper.GetFont();
-            labelTitle.Font = CatswordsTabHelper.GetFont(20F);
-            labelReplyEmail.Font = CatswordsTabHelper.GetFont();
-            txtMessage.Font = CatswordsTabHelper.GetFont();
+            this.Font = ShellHelper.GetFont();
+            btnSend.Font = ShellHelper.GetFont(12F);
+            labelMessage.Font = ShellHelper.GetFont();
+            cbAgreement.Font = ShellHelper.GetFont();
+            labelTitle.Font = ShellHelper.GetFont(20F);
+            labelReplyEmail.Font = ShellHelper.GetFont();
+            txtMessage.Font = ShellHelper.GetFont();
         }
 
         private void OpenAuthWindow()
         {
-            CatswordsTabHelper.TabAuth = new CatswordsTabAuth();
-            CatswordsTabHelper.TabAuth.Show();
+            ShellHelper.TabAuth = new ShellAuth();
+            ShellHelper.TabAuth.Show();
         }
 
         private void OpenExpertWindow()
         {
-            CatswordsTabHelper.TabExpert = new CatswordsTabExpert();
-            CatswordsTabHelper.TabExpert.Show();
+            ShellHelper.TabExpert = new ShellExpert();
+            ShellHelper.TabExpert.Show();
         }
 
         private void CatswordsTabWriter_Load(object sender, EventArgs e)
         {
-            CatswordsTabHelper.TabWriter = this;
+            ShellHelper.TabWriter = this;
             ActiveControl = txtMessage;
 
             try
             {
                 // login by guest credential
-                CatswordsTabHelper.DoLogin("guest.tab@catswords.com", "d3nexkz9UkP8ur77");
+                ShellHelper.DoLogin("guest.tab@catswords.com", "d3nexkz9UkP8ur77");
             } catch
             {
                 // open auth window
@@ -93,29 +90,26 @@ namespace CatswordsTab.Shell
             }
             else
             {
-                // do analyze
-                CatswordsTabHelper.DoAnalyze();
-
                 // write data
                 TabItem obj = new TabItem
                 {
-                    HashMd5 = CatswordsTabHelper.TabPage.FileMd5,
-                    HashSha1 = CatswordsTabHelper.TabPage.FileSha1,
-                    HashCrc32 = CatswordsTabHelper.TabPage.FileCrc32,
-                    HashSha256 = CatswordsTabHelper.TabPage.FileSha256,
-                    HashHead32 = CatswordsTabHelper.TabPage.FileHead32,
-                    Extension = CatswordsTabHelper.TabPage.FileExt,
+                    HashMd5 = ShellHelper.TabPage.FileMd5,
+                    HashSha1 = ShellHelper.TabPage.FileSha1,
+                    HashCrc32 = ShellHelper.TabPage.FileCrc32,
+                    HashSha256 = ShellHelper.TabPage.FileSha256,
+                    HashHead32 = ShellHelper.TabPage.FileHead32,
+                    Extension = ShellHelper.TabPage.FileExt,
                     Message = txtMessage.Text,
                     ReplyEmail = txtReplyEmail.Text,
-                    Language = CatswordsTabHelper.TabPage.CurrentLanguage,
-                    Report = CatswordsTabHelper.ReportData,
+                    Language = ShellHelper.TabPage.CurrentLanguage,
+                    Report = ShellHelper.ReportData,
                 };
                 string jsonData = obj.ToJson();
-                string response = CatswordsTabHelper.RequestPost("/_/items/catswords_tab", jsonData);
+                string response = ShellHelper.RequestPost("/_/items/catswords_tab", jsonData);
                 TabResponse jsonResponse = JsonConvert.DeserializeObject<TabResponse>(response);
                 if (jsonResponse.Data.Id > 0)
                 {
-                    CatswordsTabHelper.TabPage.InitializeTerminal();
+                    ShellHelper.TabPage.InitializeTerminal();
                     MessageBox.Show("등록이 완료되었습니다.");
                     this.Close();
                 }

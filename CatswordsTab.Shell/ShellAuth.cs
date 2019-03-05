@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace CatswordsTab.Shell
 {
-    public partial class CatswordsTabAuth : Form
+    public partial class ShellAuth : Form
     {
-        private CatswordsTabWriter CatswordsTabWriter = null;
+        private ShellWriter CatswordsTabWriter = null;
 
         private void Initialize()
         {
@@ -23,7 +23,7 @@ namespace CatswordsTab.Shell
             InitializeFont();
         }
 
-        public CatswordsTabAuth()
+        public ShellAuth()
         {
             Initialize();
         }
@@ -40,20 +40,20 @@ namespace CatswordsTab.Shell
 
         private void InitializeFont()
         {
-            this.Font = CatswordsTabHelper.GetFont();
-            labelTitle.Font = CatswordsTabHelper.GetFont(20F);
-            btnLogin.Font = CatswordsTabHelper.GetFont(12F);
-            labelUsername.Font = CatswordsTabHelper.GetFont();
-            labelPassword.Font = CatswordsTabHelper.GetFont();
-            labelCopyright.Font = CatswordsTabHelper.GetFont();
-            txtUsername.Font = CatswordsTabHelper.GetFont();
-            txtPassword.Font = CatswordsTabHelper.GetFont();
+            this.Font = ShellHelper.GetFont();
+            labelTitle.Font = ShellHelper.GetFont(20F);
+            btnLogin.Font = ShellHelper.GetFont(12F);
+            labelUsername.Font = ShellHelper.GetFont();
+            labelPassword.Font = ShellHelper.GetFont();
+            labelCopyright.Font = ShellHelper.GetFont();
+            txtUsername.Font = ShellHelper.GetFont();
+            txtPassword.Font = ShellHelper.GetFont();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try { 
-                CatswordsTabHelper.DoLogin(txtUsername.Text, txtPassword.Text);
+                ShellHelper.DoLogin(txtUsername.Text, txtPassword.Text);
                 MessageBox.Show("로그인 하였습니다.");
 
                 if (CatswordsTabWriter != null)
@@ -71,7 +71,7 @@ namespace CatswordsTab.Shell
 
         private void CatswordsTabAuth_Load(object sender, EventArgs e)
         {
-            CatswordsTabHelper.TabAuth = this;
+            ShellHelper.TabAuth = this;
             ActiveControl = txtUsername;
         }
     }

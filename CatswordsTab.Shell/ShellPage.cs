@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CatswordsTab.Shell
 {
-    public partial class CatswordsTabPage : SharpPropertyPage
+    public partial class ShellPage : SharpPropertyPage
     {
         public string FilePath;
         public string FileMd5;
@@ -24,7 +24,7 @@ namespace CatswordsTab.Shell
         public string FileHead32;
         public string CurrentLanguage;
 
-        public CatswordsTabPage()
+        public ShellPage()
         {
             InitializeComponent();
             InitializeLocalzation();
@@ -40,10 +40,10 @@ namespace CatswordsTab.Shell
 
         private void InitializeFont()
         {
-            this.Font = CatswordsTabHelper.GetFont();
-            btnAdd.Font = CatswordsTabHelper.GetFont(12F);
-            labelTitle.Font = CatswordsTabHelper.GetFont(20F);
-            txtTerminal.Font = CatswordsTabHelper.GetFont();
+            this.Font = ShellHelper.GetFont();
+            btnAdd.Font = ShellHelper.GetFont(12F);
+            labelTitle.Font = ShellHelper.GetFont(20F);
+            txtTerminal.Font = ShellHelper.GetFont();
         }
 
         public void SetTxtTerminalText(string text)
@@ -63,7 +63,7 @@ namespace CatswordsTab.Shell
                 { "extension", FileExt },
                 { "language", CurrentLanguage }
             };
-            string response = CatswordsTabHelper.RequestPost("/portal/?route=tab", obj.ToString());
+            string response = ShellHelper.RequestPost("/portal/?route=tab", obj.ToString());
             txtTerminal.Text = response;
             txtTerminal.Enabled = true;
         }
@@ -71,13 +71,13 @@ namespace CatswordsTab.Shell
         protected override void OnPropertyPageInitialised(SharpPropertySheet parent)
         {
             FilePath = parent.SelectedItemPaths.First();
-            FileMd5 = CatswordsTabHelper.GetFileMd5(FilePath);
-            FileSha1 = CatswordsTabHelper.GetFileSha1(FilePath);
-            FileExt = CatswordsTabHelper.GetFileExtension(FilePath);
-            FileCrc32 = CatswordsTabHelper.GetFileCrc32(FilePath);
-            FileSha256 = CatswordsTabHelper.GetFileSha256(FilePath);
-            FileHead32 = CatswordsTabHelper.GetFileHead32(FilePath);
-            CurrentLanguage = CatswordsTabHelper.GetCurrentLanaguage();
+            FileMd5 = ShellHelper.GetFileMd5(FilePath);
+            FileSha1 = ShellHelper.GetFileSha1(FilePath);
+            FileExt = ShellHelper.GetFileExtension(FilePath);
+            FileCrc32 = ShellHelper.GetFileCrc32(FilePath);
+            FileSha256 = ShellHelper.GetFileSha256(FilePath);
+            FileHead32 = ShellHelper.GetFileHead32(FilePath);
+            CurrentLanguage = ShellHelper.GetCurrentLanaguage();
             InitializeTerminal();
         }
 
@@ -93,13 +93,13 @@ namespace CatswordsTab.Shell
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CatswordsTabHelper.TabWriter = new CatswordsTabWriter();
-            CatswordsTabHelper.TabWriter.Show();
+            ShellHelper.TabWriter = new ShellWriter();
+            ShellHelper.TabWriter.Show();
         }
 
         private void CatswordsTabPage_Load(object sender, EventArgs e)
         {
-            CatswordsTabHelper.TabPage = this;
+            ShellHelper.TabPage = this;
             ActiveControl = null;
         }
 

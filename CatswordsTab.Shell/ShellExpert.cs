@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CatswordsTab.Shell
 {
-    public partial class CatswordsTabExpert : Form
+    public partial class ShellExpert : Form
     {
         private void Initialize()
         {
@@ -19,7 +19,7 @@ namespace CatswordsTab.Shell
             InitializeFont();
         }
 
-        public CatswordsTabExpert()
+        public ShellExpert()
         {
             Initialize();
         }
@@ -33,15 +33,15 @@ namespace CatswordsTab.Shell
 
         private void InitializeFont()
         {
-            this.Font = CatswordsTabHelper.GetFont();
-            labelTitle.Font = CatswordsTabHelper.GetFont(20F);
-            btnLogin.Font = CatswordsTabHelper.GetFont(12F);
+            this.Font = ShellHelper.GetFont();
+            labelTitle.Font = ShellHelper.GetFont(20F);
+            btnLogin.Font = ShellHelper.GetFont(12F);
         }
 
         private void OpenAuthWindow()
         {
-            CatswordsTabHelper.TabAuth = new CatswordsTabAuth();
-            CatswordsTabHelper.TabAuth.Show();
+            ShellHelper.TabAuth = new ShellAuth();
+            ShellHelper.TabAuth.Show();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -51,15 +51,15 @@ namespace CatswordsTab.Shell
 
         private void CatswordsTabExpert_Load(object sender, EventArgs e)
         {
-            CatswordsTabHelper.TabExpert = this;
-            txtHashMd5.Text = CatswordsTabHelper.TabPage.FileMd5;
-            txtHashSha1.Text = CatswordsTabHelper.TabPage.FileSha1;
-            txtHashCrc32.Text = CatswordsTabHelper.TabPage.FileCrc32;
-            txtHashHead32.Text = CatswordsTabHelper.TabPage.FileHead32;
-            txtHashSha256.Text = CatswordsTabHelper.TabPage.FileSha256;
-            txtExtension.Text = CatswordsTabHelper.TabPage.FileExt;
-            txtLanguage.Text = CatswordsTabHelper.TabPage.CurrentLanguage;
-            txtAnalytics.Text = CatswordsTabHelper.ReportData;
+            ShellHelper.TabExpert = this;
+            txtHashMd5.Text = ShellHelper.TabPage.FileMd5;
+            txtHashSha1.Text = ShellHelper.TabPage.FileSha1;
+            txtHashCrc32.Text = ShellHelper.TabPage.FileCrc32;
+            txtHashHead32.Text = ShellHelper.TabPage.FileHead32;
+            txtHashSha256.Text = ShellHelper.TabPage.FileSha256;
+            txtExtension.Text = ShellHelper.TabPage.FileExt;
+            txtLanguage.Text = ShellHelper.TabPage.CurrentLanguage;
+            txtAnalytics.Text = ShellHelper.ReportData;
         }
 
         private void btnGet_Click(object sender, EventArgs e)
@@ -74,14 +74,13 @@ namespace CatswordsTab.Shell
                 { "extension", txtExtension.Text },
                 { "language", txtLanguage.Text }
             };
-            string response = CatswordsTabHelper.RequestPost("/portal/?route=tab", obj.ToString());
-            CatswordsTabHelper.TabPage.SetTxtTerminalText(response);
+            string response = ShellHelper.RequestPost("/portal/?route=tab", obj.ToString());
+            ShellHelper.TabPage.SetTxtTerminalText(response);
         }
 
         private void btnAnalyze_Click(object sender, EventArgs e)
         {
-            CatswordsTabHelper.DoAnalyze();
-            txtAnalytics.Text = CatswordsTabHelper.ReportData;
+            txtAnalytics.Text = ShellHelper.ReportData;
         }
     }
 }

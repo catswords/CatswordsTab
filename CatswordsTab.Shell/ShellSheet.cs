@@ -10,7 +10,7 @@ namespace CatswordsTab.Shell
 {
     [ComVisible(true)]
     [COMServerAssociation(AssociationType.AllFiles)]
-    public class CatswordsTabSheet : SharpPropertySheet
+    public class ShellSheet : SharpPropertySheet
     {
         protected override bool CanShowSheet()
         {
@@ -21,7 +21,7 @@ namespace CatswordsTab.Shell
         protected override IEnumerable<SharpPropertyPage> CreatePages()
         {
             //  Create the property sheet page.
-            var page = new CatswordsTabPage();
+            var page = new ShellPage();
 
             //  Return the pages we've created.
             return new[] { page };

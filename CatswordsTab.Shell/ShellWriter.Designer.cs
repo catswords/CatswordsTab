@@ -1,6 +1,6 @@
 ﻿namespace CatswordsTab.Shell
 {
-    partial class CatswordsTabWriter
+    partial class ShellWriter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatswordsTabWriter));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShellWriter));
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelMessage = new System.Windows.Forms.Label();
             this.txtMessage = new System.Windows.Forms.TextBox();
