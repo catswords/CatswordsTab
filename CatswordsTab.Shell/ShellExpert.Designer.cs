@@ -46,13 +46,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPageAnalytics = new System.Windows.Forms.TabPage();
-            this.btnAnalyze = new System.Windows.Forms.Button();
-            this.txtAnalytics = new System.Windows.Forms.TextBox();
+            this.tabPageSupport = new System.Windows.Forms.TabPage();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.txtSupport = new System.Windows.Forms.TextBox();
             this.tabExpert.SuspendLayout();
             this.tabPageQuery.SuspendLayout();
-            this.tabPageAnalytics.SuspendLayout();
+            this.tabPageSupport.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -68,7 +67,7 @@
             // tabExpert
             // 
             this.tabExpert.Controls.Add(this.tabPageQuery);
-            this.tabExpert.Controls.Add(this.tabPageAnalytics);
+            this.tabExpert.Controls.Add(this.tabPageSupport);
             this.tabExpert.Location = new System.Drawing.Point(12, 131);
             this.tabExpert.Name = "tabExpert";
             this.tabExpert.SelectedIndex = 0;
@@ -222,35 +221,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "MD5";
             // 
-            // tabPageAnalytics
+            // tabPageSupport
             // 
-            this.tabPageAnalytics.Controls.Add(this.btnAnalyze);
-            this.tabPageAnalytics.Controls.Add(this.txtAnalytics);
-            this.tabPageAnalytics.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAnalytics.Name = "tabPageAnalytics";
-            this.tabPageAnalytics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAnalytics.Size = new System.Drawing.Size(509, 338);
-            this.tabPageAnalytics.TabIndex = 7;
-            this.tabPageAnalytics.Text = "Analytics";
-            this.tabPageAnalytics.UseVisualStyleBackColor = true;
-            // 
-            // btnAnalyze
-            // 
-            this.btnAnalyze.Location = new System.Drawing.Point(6, 6);
-            this.btnAnalyze.Name = "btnAnalyze";
-            this.btnAnalyze.Size = new System.Drawing.Size(497, 33);
-            this.btnAnalyze.TabIndex = 1;
-            this.btnAnalyze.Text = "Analyze";
-            this.btnAnalyze.UseVisualStyleBackColor = true;
-            this.btnAnalyze.Click += new System.EventHandler(this.btnAnalyze_Click);
-            // 
-            // txtAnalytics
-            // 
-            this.txtAnalytics.Location = new System.Drawing.Point(6, 45);
-            this.txtAnalytics.Multiline = true;
-            this.txtAnalytics.Name = "txtAnalytics";
-            this.txtAnalytics.Size = new System.Drawing.Size(497, 287);
-            this.txtAnalytics.TabIndex = 0;
+            this.tabPageSupport.Controls.Add(this.txtSupport);
+            this.tabPageSupport.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSupport.Name = "tabPageSupport";
+            this.tabPageSupport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageSupport.Size = new System.Drawing.Size(509, 338);
+            this.tabPageSupport.TabIndex = 7;
+            this.tabPageSupport.Text = "Support";
+            this.tabPageSupport.UseVisualStyleBackColor = true;
             // 
             // btnLogin
             // 
@@ -268,7 +248,15 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // CatswordsTabExpert
+            // txtSupport
+            // 
+            this.txtSupport.Location = new System.Drawing.Point(6, 6);
+            this.txtSupport.Multiline = true;
+            this.txtSupport.Name = "txtSupport";
+            this.txtSupport.Size = new System.Drawing.Size(497, 326);
+            this.txtSupport.TabIndex = 0;
+            // 
+            // ShellExpert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -282,14 +270,14 @@
             this.Icon = global::CatswordsTab.Shell.Properties.Resources.icon_icons_retro_flower_fire_2_24692;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CatswordsTabExpert";
+            this.Name = "ShellExpert";
             this.Text = "CatswordsTabExpert";
             this.Load += new System.EventHandler(this.CatswordsTabExpert_Load);
             this.tabExpert.ResumeLayout(false);
             this.tabPageQuery.ResumeLayout(false);
             this.tabPageQuery.PerformLayout();
-            this.tabPageAnalytics.ResumeLayout(false);
-            this.tabPageAnalytics.PerformLayout();
+            this.tabPageSupport.ResumeLayout(false);
+            this.tabPageSupport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,8 +304,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnGet;
-        private System.Windows.Forms.TabPage tabPageAnalytics;
-        private System.Windows.Forms.Button btnAnalyze;
-        private System.Windows.Forms.TextBox txtAnalytics;
+        private System.Windows.Forms.TabPage tabPageSupport;
+        private System.Windows.Forms.TextBox txtSupport;
     }
 }

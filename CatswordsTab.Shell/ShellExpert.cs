@@ -59,7 +59,7 @@ namespace CatswordsTab.Shell
             txtHashSha256.Text = ShellHelper.TabPage.FileSha256;
             txtExtension.Text = ShellHelper.TabPage.FileExt;
             txtLanguage.Text = ShellHelper.TabPage.CurrentLanguage;
-            txtAnalytics.Text = ShellHelper.ReportData;
+            txtSupport.Text = ShellHelper.ReportData;
         }
 
         private void btnGet_Click(object sender, EventArgs e)
@@ -76,11 +76,6 @@ namespace CatswordsTab.Shell
             };
             string response = ShellHelper.RequestPost("/portal/?route=tab", obj.ToString());
             ShellHelper.TabPage.SetTxtTerminalText(response);
-        }
-
-        private void btnAnalyze_Click(object sender, EventArgs e)
-        {
-            txtAnalytics.Text = ShellHelper.ReportData;
         }
     }
 }

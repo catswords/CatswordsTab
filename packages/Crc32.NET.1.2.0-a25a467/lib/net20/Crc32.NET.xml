@@ -178,6 +178,29 @@
             <param name="length">Length of the input data in the buffer.</param>
             <returns>CRC-32 of the data in the buffer.</returns>
         </member>
+        <member name="M:Force.Crc32.Crc32Algorithm.Compute(System.IO.Stream,System.Int64)">
+            <summary>
+            Computes CRC-32 from input stream.
+            </summary>
+            <param name="input">Input stream with data to be checksummed.</param>
+            <param name="length">Length of the input data in the stream.</param>
+            <returns>CRC-32 of the data in the stream.</returns>
+        </member>
+        <member name="M:Force.Crc32.Crc32Algorithm.Compute(System.IO.Stream)">
+            <summary>
+            Computes CRC-32 from entire input stream.
+            </summary>
+            <param name="input">Input stream with data to be checksummed.</param>
+            <returns>CRC-32 of the data in the stream.</returns>
+        </member>
+        <member name="M:Force.Crc32.Crc32Algorithm.ComputeAndWriteToEnd(System.IO.Stream,System.Int64)">
+            <summary>
+            Computes CRC-32 from input stream and writes it at the end.
+            </summary>
+            <param name="input">Input stream with data to be checksummed.</param>
+            <param name="length">Length of the input data in the stream.</param>
+            <returns>CRC-32 of the data in the stream.</returns>
+        </member>
         <member name="M:Force.Crc32.Crc32Algorithm.ComputeAndWriteToEnd(System.Byte[])">
             <summary>
             Computes CRC-32 from input buffer - 4 bytes and writes it as last 4 bytes of buffer. Can be used in conjunction with <see cref="M:Force.Crc32.Crc32Algorithm.IsValidWithCrcAtEnd(System.Byte[])"/>
