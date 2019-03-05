@@ -1,0 +1,64 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "PAGE_TITLE"
+msgstr "커뮤니티"
+
+msgid "PAGE_BUTTON_ADD"
+msgstr "의견작성"
+
+msgid "PAGE_LABEL_TITLE"
+msgstr "커뮤니티"
+
+msgid "WRITER_BUTTON_SEND"
+msgstr "저장"
+
+msgid "WRITER_LABEL_MESSAGE"
+msgstr "남기실 말"
+
+msgid "WRITER_CHECKBOX_AGREEMENT"
+msgstr "개인정보 수집 및 이용 약관에 동의합니다."
+
+msgid "WRITER_LABEL_TITLE"
+msgstr "의견작성"
+
+msgid "WRITER_LABEL_REPLAY_EMAIL"
+msgstr "전자우편 (선택, 회신이 필요할 때만 작성)"
+
+msgid "WRITER_TITLE"
+msgstr "의견작성"
+
+msgid "AUTH_BUTTON_LOGIN"
+msgstr "로그인"
+
+msgid "AUTH_LABEL_USERNAME"
+msgstr "사용자 전자우편"
+
+msgid "AUTH_LABEL_PASSWORD"
+msgstr "사용자 열쇠글"
+
+msgid "AUTH_LABEL_TITLE"
+msgstr "인증"
+
+msgid "AUTH_LABEL_COPYRIGHT"
+msgstr "(c) Catswords Community, OSL"
+
+msgid "AUTH_TITLE"
+msgstr "인증"
+
+msgid "AUTH_MESSAGE_LOGIN_SUCCESS"
+msgstr "로그인하였습니다."
+
+msgid "AUTH_MESSAGE_LOGIN_FAILED"
+msgstr "사용자 이름 또는 열쇠글을 확인하세요."
+
+msgid "EXPERT_LABEL_TITLE"
+msgstr "전문가 모드"
+
+msgid "EXPERT_BUTTON_LOGIN"
+msgstr "로그인"
+
+msgid "EXPERT_TITLE"
+msgstr "전문가 모드"
