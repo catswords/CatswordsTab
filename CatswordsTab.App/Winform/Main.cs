@@ -1,7 +1,6 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace CatswordsTab.App
@@ -12,27 +11,13 @@ namespace CatswordsTab.App
         private Dictionary<string, string> _computed;
         private string _result = Properties.Resources.txtTerminal_en;
 
-        public Main()
+        public Main(string _path)
         {
-            ChooseTargetFile();
             InitializeComponent();
             WinformService.SetMainWindow(this);
+            SetPath(_path);
+            SetResult();
             SetTxtTerminal(GetResult());
-        }
-
-        private void ChooseTargetFile()
-        {
-            OpenFileDialog fd = new OpenFileDialog();
-            fd.Title = "Open Target File";
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                SetPath(fd.FileName);
-                SetResult();
-            }
-            else
-            {
-                ChooseTargetFile();
-            }
         }
 
         private void SetResult()
@@ -47,15 +32,12 @@ namespace CatswordsTab.App
             request.AddParameter("hash_crc32", _computed["crc32"]);
             request.AddParameter("hash_sha256", _computed["sha256"]);
             request.AddParameter("extension", _computed["extension"]);
+            request.AddParameter("infohash", _computed["infohash"]);
             request.AddParameter("locale", _computed["locale"]);
 
+            // get summary
             IRestResponse response = client.Execute(request);
             _result = response.Content;
-        }
-
-        private void SetPath(string path)
-        {
-            _path = path;
         }
 
         private void OnClick_btnWriter(object sender, EventArgs e)
@@ -65,8 +47,21 @@ namespace CatswordsTab.App
 
         private void OnLoad_Main(object sender, EventArgs e)
         {
-            labelTitle.Text = Properties.Resources.labelTitle_en;
-            btnWriter.Text = Properties.Resources.btnWriter_en;
+            if(_computed["locale"] == "ko")
+            {
+                this.Text = "캐츠워즈 탭: 커뮤니티";
+                labelTitle.Text = "커뮤니티";
+                btnWriter.Text = "의견작성";
+                linkLabel2.Text = "이 프로젝트에 기여";
+                tabPage1.Text = "요약";
+                tabPage2.Text = "16진수";
+            } else
+            {
+                this.Text = "CatswordsTab: Community";
+            }
+
+            // Gex HEX data (limit 8K)
+            textBox1.Text = ComputeService.GetHexView(ComputeService.GetFileBytes(_path, 8192));
         }
 
         private void OnDblClick_labelTitle(object sender, EventArgs e)
@@ -80,6 +75,16 @@ namespace CatswordsTab.App
             {
                 this.Close();
             }
+        }
+
+        public void SetPath(string path)
+        {
+            _path = path;
+        }
+
+        public string GetPath()
+        {
+            return _path;
         }
 
         public void SetTxtTerminal(string text)
@@ -102,6 +107,16 @@ namespace CatswordsTab.App
         {
             SetResult();
             SetTxtTerminal(GetResult());
+        }
+
+        private void OnClick_linkLabel1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/catswords/CatswordsTab");
+        }
+
+        private void OnClick_linkLabel2(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/catswords/CatswordsTab");
         }
     }
 }

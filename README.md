@@ -1,14 +1,18 @@
 # CatswordsTab
-CatswordsTab is community extension of Windows file explorer  https://exts.kr/wiki/catswords-tab
+CatswordsTab is make own community for each your files   https://catswords.re.kr/wiki/catswords-tab
 
-## demo
+## Demo
 https://youtu.be/cSdjamlY38I
 
-## donate us
+## Donate me
 https://www.patreon.com/posts/catswordstab-25295231
 
-## screenshot
-![Screenshot](https://raw.githubusercontent.com/gnh1201/CatswordsTab/master/screenshot190215.png)
+## Screenshots
+![in Windows Explorer](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/explorer1.png)
+![in Desktop 1](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/desktop1.png)
+![in Desktop 2](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/desktop2.png)
+![in Desktop 3](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/desktop3.png)
+![in Desktop 4](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/desktop4.png)
 
-## contact us
+## Contact me
 support@exts.kr
