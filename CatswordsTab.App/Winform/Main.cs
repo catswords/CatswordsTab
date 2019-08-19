@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using CatswordsTab.App.Model;
+using LiteDB;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -16,13 +18,13 @@ namespace CatswordsTab.App
             InitializeComponent();
             WinformService.SetMainWindow(this);
             SetPath(_path);
-            SetResult();
-            SetTxtTerminal(GetResult());
+            ReloadResult();
         }
 
         private void SetResult()
         {
             _computed = ComputeService.Compute(_path);
+            _result = "";
 
             RestClient client = new RestClient("https://catswords.re.kr/ep/?route=tab");
             RestRequest request = new RestRequest(Method.POST);
@@ -35,9 +37,41 @@ namespace CatswordsTab.App
             request.AddParameter("infohash", _computed["infohash"]);
             request.AddParameter("locale", _computed["locale"]);
 
-            // get summary
+            // Get information when online
             IRestResponse response = client.Execute(request);
-            _result = response.Content;
+            if(response.StatusCode == System.Net.HttpStatusCode.OK) {
+                WriteResultLine(response.Content);
+            }
+            // Get information when offline
+            else
+            {
+                WriteResultLine("# CatswordsTab Report (Offline)");
+                WriteResultLine();
+                WriteResultLine("- MD5: " + _computed["md5"]);
+                WriteResultLine("- SHA1: " + _computed["sha1"]);
+                WriteResultLine("- CRC32: " + _computed["crc32"]);
+                WriteResultLine();
+                if (_computed["locale"] == "ko")
+                {
+                    WriteResultLine("인터넷 연결이 원활하지 않으니 확인 바랍니다.");
+                }
+                else
+                {
+                    WriteResultLine("Please check your internet connection.");
+                }
+                WriteResultLine();
+                WriteResultLine("# Comments (Offline)");
+                using (LiteDatabase db = new LiteDatabase("@AppData.db"))
+                {
+                    LiteCollection<MessageModel> messages = db.GetCollection<MessageModel>("messages");
+                    IEnumerable<MessageModel> results = messages.Find(x => x.HashMD5.Equals(_computed["md5"]));
+                    messages.EnsureIndex(x => x.HashMD5);
+                    foreach (MessageModel entry in results)
+                    {
+                        WriteResultLine("- " + entry.Message + " @" + entry.CreatedOn.ToString());
+                    }
+                }
+            }
         }
 
         private void OnClick_btnWriter(object sender, EventArgs e)
@@ -91,6 +125,11 @@ namespace CatswordsTab.App
         {
             txtTerminal.Text = text;
             txtTerminal.Enabled = true;
+        }
+        
+        public void WriteResultLine(string text = "")
+        {
+            _result = _result + text + "\r\n";
         }
 
         public Dictionary<string, string> GetComputed()

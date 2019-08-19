@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using CatswordsTab.App.Model;
+using LiteDB;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -45,14 +47,38 @@ namespace CatswordsTab.App.Winform
             {
                 btnSend.Enabled = false;
 
+                // store message to offline database
+                using (LiteDatabase db = new LiteDatabase("@AppData.db"))
+                {
+                    var messages = db.GetCollection<MessageModel>("messages");
+                    MessageModel message = new MessageModel
+                    {
+                        Message = txtMessage.Text,
+                        ReplyEmail = txtReplyEmail.Text,
+                        HashMD5 = _computed["md5"],
+                        HashSHA256 = _computed["sha256"],
+                        HashCRC32 = _computed["crc32"],
+                        HashSHA1 = _computed["sha1"],
+                        HashHEAD32 = _computed["head32"],
+                        InfoHash = _computed["infohash"],
+                        Extension = _computed["extension"],
+                        CreatedOn = DateTime.Now
+                    };
+                    messages.Insert(message);
+                }
+
+                // store message to online database
                 RestClient client = new RestClient("https://catswords.re.kr/ep/?route=tab");
-                RestRequest request = new RestRequest(Method.POST);
-                request.RequestFormat = DataFormat.Json;
+                RestRequest request = new RestRequest(Method.POST)
+                {
+                    RequestFormat = DataFormat.Json
+                };
                 request.AddParameter("action", "comment");
                 request.AddParameter("hash_md5", _computed["md5"]);
                 request.AddParameter("hash_sha1", _computed["sha1"]);
                 request.AddParameter("hash_crc32", _computed["crc32"]);
                 request.AddParameter("hash_sha256", _computed["sha256"]);
+                request.AddParameter("hash_head32", _computed["head32"]);
                 request.AddParameter("extension", _computed["extension"]);
                 request.AddParameter("infohash", _computed["infohash"]);
                 request.AddParameter("locale", _computed["locale"]);
@@ -61,18 +87,18 @@ namespace CatswordsTab.App.Winform
 
                 IRestResponse response = client.Execute(request);
                 _result = response.Content;
-                MessageBox.Show(_result);
+
                 if (_result == "success")
                 {
-                    MessageBox.Show("success");
-                    WinformService.GetMainWindow().ReloadResult();
-                    this.Close();
+                    MessageBox.Show("Success");
                 }
                 else
                 {
-                    btnSend.Enabled = true;
-                    MessageBox.Show("retry");
+                    MessageBox.Show("Offline mode");
                 }
+
+                WinformService.GetMainWindow().ReloadResult();
+                this.Close();
             }
         }
 
