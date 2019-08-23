@@ -81,24 +81,6 @@ namespace CatswordsTab.App.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comment.
-        /// </summary>
-        internal static string btnWriter_en {
-            get {
-                return ResourceManager.GetString("btnWriter_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 의견작성.
-        /// </summary>
-        internal static string btnWriter_ko {
-            get {
-                return ResourceManager.GetString("btnWriter_ko", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icon_icons_retro_flower_fire_2_24692_16 {
@@ -121,9 +103,29 @@ namespace CatswordsTab.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_codeblocks_3246770 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_codeblocks_3246770", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_General_Office_48_3592847 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_General_Office_48_3592847", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_link_chain_hyperlink_linked_internet_3937335 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_link_chain_hyperlink_linked_internet_3937335", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -199,84 +201,12 @@ namespace CatswordsTab.App.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Community.
-        /// </summary>
-        internal static string labelTitle_en {
-            get {
-                return ResourceManager.GetString("labelTitle_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 커뮤니티.
-        /// </summary>
-        internal static string labelTitle_ko {
-            get {
-                return ResourceManager.GetString("labelTitle_ko", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File could not recognized..
-        /// </summary>
-        internal static string msgNotRecognized_en {
-            get {
-                return ResourceManager.GetString("msgNotRecognized_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 파일을 인식할 수 없습니다..
-        /// </summary>
-        internal static string msgNotRecognized_ko {
-            get {
-                return ResourceManager.GetString("msgNotRecognized_ko", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Community.
-        /// </summary>
-        internal static string PageTitle_en {
-            get {
-                return ResourceManager.GetString("PageTitle_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 커뮤니티.
-        /// </summary>
-        internal static string PageTitle_ko {
-            get {
-                return ResourceManager.GetString("PageTitle_ko", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon Ph03nyx_Super_Mario_Retro_Flower_Fire_2 {
             get {
                 object obj = ResourceManager.GetObject("Ph03nyx_Super_Mario_Retro_Flower_Fire_2", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading....
-        /// </summary>
-        internal static string txtTerminal_en {
-            get {
-                return ResourceManager.GetString("txtTerminal_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 불러오는 중....
-        /// </summary>
-        internal static string txtTerminal_ko {
-            get {
-                return ResourceManager.GetString("txtTerminal_ko", resourceCulture);
             }
         }
     }

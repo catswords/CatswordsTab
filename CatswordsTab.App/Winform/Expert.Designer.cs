@@ -46,6 +46,9 @@
             this.labelMd5 = new System.Windows.Forms.Label();
             this.labelInfoHash = new System.Windows.Forms.Label();
             this.txtInfoHash = new System.Windows.Forms.TextBox();
+            this.btnOpenSolver = new System.Windows.Forms.Button();
+            this.btnOpenApplication = new System.Windows.Forms.Button();
+            this.btnOpenAssociation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -220,6 +223,36 @@
             this.txtInfoHash.Size = new System.Drawing.Size(284, 23);
             this.txtInfoHash.TabIndex = 1;
             // 
+            // btnOpenSolver
+            // 
+            this.btnOpenSolver.Location = new System.Drawing.Point(129, 449);
+            this.btnOpenSolver.Name = "btnOpenSolver";
+            this.btnOpenSolver.Size = new System.Drawing.Size(284, 23);
+            this.btnOpenSolver.TabIndex = 3;
+            this.btnOpenSolver.Text = "Open protection solver...";
+            this.btnOpenSolver.UseVisualStyleBackColor = true;
+            this.btnOpenSolver.Click += new System.EventHandler(this.OnClick_btnOpenSolver);
+            // 
+            // btnOpenApplication
+            // 
+            this.btnOpenApplication.Location = new System.Drawing.Point(129, 478);
+            this.btnOpenApplication.Name = "btnOpenApplication";
+            this.btnOpenApplication.Size = new System.Drawing.Size(284, 23);
+            this.btnOpenApplication.TabIndex = 3;
+            this.btnOpenApplication.Text = "View installed applications...";
+            this.btnOpenApplication.UseVisualStyleBackColor = true;
+            this.btnOpenApplication.Click += new System.EventHandler(this.OnClick_btnOpenApplication);
+            // 
+            // btnOpenAssociation
+            // 
+            this.btnOpenAssociation.Location = new System.Drawing.Point(129, 508);
+            this.btnOpenAssociation.Name = "btnOpenAssociation";
+            this.btnOpenAssociation.Size = new System.Drawing.Size(283, 23);
+            this.btnOpenAssociation.TabIndex = 4;
+            this.btnOpenAssociation.Text = "View file associations...";
+            this.btnOpenAssociation.UseVisualStyleBackColor = true;
+            this.btnOpenAssociation.Click += new System.EventHandler(this.OnClick_btnOpenAssociation);
+            // 
             // Expert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,7 +260,10 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::CatswordsTab.App.Properties.Resources.iconfinder_shining_mix_wrench_1059388;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(441, 463);
+            this.ClientSize = new System.Drawing.Size(441, 555);
+            this.Controls.Add(this.btnOpenAssociation);
+            this.Controls.Add(this.btnOpenApplication);
+            this.Controls.Add(this.btnOpenSolver);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.txtInfoHash);
             this.Controls.Add(this.txtLocale);
@@ -279,5 +315,8 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label labelInfoHash;
         private System.Windows.Forms.TextBox txtInfoHash;
+        private System.Windows.Forms.Button btnOpenSolver;
+        private System.Windows.Forms.Button btnOpenApplication;
+        private System.Windows.Forms.Button btnOpenAssociation;
     }
 }
