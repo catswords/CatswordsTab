@@ -1,13 +1,42 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CatswordsTab.App.Winform
 {
     public partial class Welcome : Form
     {
+        private string AppPathFile = AppDataService.GetFilePath("CatswordsTab.App.Path.txt");
+        public string FileName { get; set; }
+
         public Welcome()
         {
             InitializeComponent();
+
+            string path = GetAppPath();
+            string _path = System.Reflection.Assembly.GetEntryAssembly().Location;
+            if (!path.Equals(_path))
+            {
+                SetAppPath(_path);
+            }
+        }
+
+        private string GetAppPath()
+        {
+            try
+            {
+                return File.ReadAllText(AppPathFile);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private void SetAppPath(string path)
+        {
+            File.WriteAllText(AppPathFile, path, Encoding.UTF8);
         }
 
         private void OnLoad_Welcome(object sender, EventArgs e)
@@ -27,14 +56,23 @@ namespace CatswordsTab.App.Winform
             fd.Title = T._("Choose your file...");
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                WinformService.SetMainWindow(new Main(fd.FileName));
+                FileName = fd.FileName;
+                WinformService.SetMainWindow(new Main(FileName));
                 WinformService.GetMainWindow().ShowDialog();
             }
         }
 
         private void OnClick_btnAgree(object sender, EventArgs e)
         {
-            ChooseFile();
+            if(string.IsNullOrEmpty(FileName))
+            {
+                ChooseFile();
+            }
+            else
+            {
+                WinformService.SetMainWindow(new Main(FileName));
+                WinformService.GetMainWindow().ShowDialog();
+            }
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

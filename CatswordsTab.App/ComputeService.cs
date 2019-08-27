@@ -31,7 +31,19 @@ namespace CatswordsTab.App
 
         private static string GetExtension(string filename)
         {
-            return Path.GetExtension(filename).Substring(1).ToUpper();
+            try {
+                if(Path.GetExtension(filename).Length > 0)
+                {
+                    return Path.GetExtension(filename).Substring(1).ToUpper();
+                } else
+                {
+                    return "";
+                }
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         private static string GetMD5(string filename)
@@ -102,10 +114,17 @@ namespace CatswordsTab.App
                 int offset = 0;
                 while (offset < count)
                 {
-                    int read = stream.Read(buffer, offset, count - offset);
-                    if (read == 0)
-                        throw new System.IO.EndOfStreamException();
-                    offset += read;
+                    try
+                    {
+                        int read = stream.Read(buffer, offset, count - offset);
+                        if (read == 0)
+                            throw new System.IO.EndOfStreamException();
+                        offset += read;
+                    }
+                    catch (EndOfStreamException)
+                    {
+                        break;
+                    }
                 }
 
                 System.Diagnostics.Debug.Assert(offset == count);
