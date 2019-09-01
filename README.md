@@ -1,11 +1,15 @@
 # CatswordsTab
-CatswordsTab is file reputation extension on Windows Environment   https://catswords.re.kr/wiki/catswords-tab
+[CatswordsTab](https://catswords.re.kr/wiki/catswords-tab) is make own community of each files on Windows environment
 
 ## Demo
-https://youtu.be/cSdjamlY38I
+- https://youtu.be/o6lE5WszRLk
 
-## Donate me
-https://www.patreon.com/posts/catswordstab-25295231
+## Awards
+- Awarded in Sep 1 2019, Bronze prize, Software compatition, [Korea National Open University](https://www.knou.ac.kr/)
+
+## Links
+- Live chat: https://open.kakao.com/o/gWvNF1B (KakaoTalk)
+- Donate me: https://www.patreon.com/posts/catswordstab-25295231
 
 ## Screenshots
 ![in Windows Explorer](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/explorer1.png)
@@ -15,4 +19,5 @@ https://www.patreon.com/posts/catswordstab-25295231
 ![in Desktop 4](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/desktop4.png)
 
 ## Contact me
-support@exts.kr
+- support@exts.kr
+- catswords@protonmail.com (if you send confidential contents to me)
