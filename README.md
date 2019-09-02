@@ -1,5 +1,5 @@
 # CatswordsTab
-[CatswordsTab](https://catswords.re.kr/wiki/catswords-tab) is make own community of each files on Windows environment
+[CatswordsTab](https://catswords.re.kr/wiki/catswords-tab) is make your own (reputation) community of each files on Windows environment
 
 ## Demo
 - https://youtu.be/o6lE5WszRLk
@@ -10,6 +10,11 @@
 ## Links
 - Live chat: https://open.kakao.com/o/gWvNF1B (KakaoTalk)
 - Donate me: https://www.patreon.com/posts/catswordstab-25295231
+
+## Options: Command line 
+- `-f`, `--filename`: Set file name or path
+- `-e`, `--export`: Export to file
+- Example: `CatswordsTab.App.exe -f CatswordsTab.App.exe -e result.txt`
 
 ## Screenshots
 ![in Windows Explorer](https://raw.githubusercontent.com/gnh1201/CatswordsTab/awesome/screenshots/explorer1.png)

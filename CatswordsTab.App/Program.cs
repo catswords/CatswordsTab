@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 using CatswordsTab.App.Winform;
 using CommandLine;
 
@@ -7,10 +9,37 @@ namespace CatswordsTab.App
 {
     static class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;
+
         class Options
         {
-            [Option('f', "filename", Required = false, HelpText = "Set File name or path.")]
+            [Option('f', "filename", Required = false, HelpText = "Set file name or path")]
             public string FileName { get; set; }
+
+            [Option('e', "export", Required = false, HelpText = "Export to file")]
+            public string Export { get; set; }
+        }
+
+        static void OpenWelcomeWindow(string filename = null)
+        {
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+
+            Welcome welcomeWindow = new Welcome();
+            welcomeWindow.FileName = filename;
+            System.Windows.Forms.Application.Run(welcomeWindow);
+        }
+
+        static void WriteLine(string text = "")
+        {
+            Console.WriteLine(text);
+        }
+
+        static void WriteFile(string path, string text = "")
+        {
+            File.WriteAllText(path, text, Encoding.UTF8);
         }
 
         /// <summary>
@@ -19,26 +48,40 @@ namespace CatswordsTab.App
         [STAThread]
         static void Main(string[] args)
         {
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            AttachConsole(ATTACH_PARENT_PROCESS);
 
-            Welcome welcomeWindow = new Welcome();
-            ParserResult<Options> _ = Parser.Default.ParseArguments<Options>(args);
-            _.WithParsed<Options>(o =>
-                {
-                    if (!string.IsNullOrEmpty(o.FileName))
+            ParserResult<Options> _ = Parser.Default.ParseArguments<Options>(args)
+                .WithParsed<Options>(o =>
                     {
-                        welcomeWindow.FileName = o.FileName;
+                        if (!string.IsNullOrEmpty(o.FileName)) {
+                            if (!string.IsNullOrEmpty(o.Export))
+                            {
+                                WriteFile(o.Export, MainService.GetResult(o.FileName));
+                                WriteLine("Exported file to " + o.Export);
+                            }
+                            else
+                            {
+                                OpenWelcomeWindow(o.FileName);
+                            }
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(o.Export))
+                            {
+                                WriteLine("File name is not specified");
+                            }
+                            else
+                            {
+                                OpenWelcomeWindow();
+                            }
+                        }
                     }
-
-                    System.Windows.Forms.Application.Run(welcomeWindow);
-                }
-            );
-            _.WithNotParsed<Options>(e =>
-                {
-                    System.Windows.Forms.Application.Run(welcomeWindow);
-                }
-            );
+                )
+                .WithNotParsed<Options>(e =>
+                    {
+                        OpenWelcomeWindow();
+                    }
+                );
         }
     }
 }
