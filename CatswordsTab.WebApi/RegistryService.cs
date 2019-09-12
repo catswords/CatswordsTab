@@ -1,11 +1,11 @@
-﻿using CatswordsTab.App.Model;
+﻿using CatswordsTab.WebApi.Model;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 
-namespace CatswordsTab.App
+namespace CatswordsTab.WebApi
 {
-    class RegistryService
+    public class RegistryService
     {
         public static AssociationModel GetAssoiciationByExtension(string extension)
         {
@@ -74,7 +74,6 @@ namespace CatswordsTab.App
 
             return associations;
         }
-
         public static List<ApplianceModel> GetInstalledApps()
         {
             List<ApplianceModel> items = new List<ApplianceModel>();

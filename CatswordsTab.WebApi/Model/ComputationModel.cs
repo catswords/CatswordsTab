@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatswordsTab.App.Model
+﻿namespace CatswordsTab.WebApi.Model
 {
     public class ComputationModel
     {
-        public string Path { get; set; }
         public string Extension { get; set; }
         public string MD5 { get; set; }
         public string SHA1 { get; set; }
